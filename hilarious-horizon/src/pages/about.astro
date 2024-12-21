@@ -1,11 +1,15 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
 
-const pageTitle = "Home";
+const pageTitle = "About";
 const pageDesc = "This is the home page";
 ---
 
 <PageLayout title={pageTitle} desc={pageDesc}>
   <h1>{pageTitle}</h1>
-  <p>This is the home page. It's a simple page.</p>
+  <>
+    <p>This is the about page. It's a simple page.</p>
+    <p>It's a page that tells you about the site.</p>
+    <p>Merry Christmas</p>
+  </>
 </PageLayout>

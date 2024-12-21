@@ -1,0 +1,45 @@
+---
+import { BRAND } from "astro:schema";
+import PageLayout from "../../layouts/PageLayout.astro";
+import { getCollection } from "astro:content";
+
+// Get blog posts collection
+const projects = await getCollection('projects')
+
+
+projects.sort((a, b) => {
+  const dateA = new Date(a.data.date)
+  const dateB = new Date(b.data.date)
+
+  return dateB.getTime() - dateA.getTime()
+})
+
+const pageTitle = "Projects"
+const pageDesc = "This is the projects page"
+---
+
+<PageLayout title={pageTitle} desc={pageDesc}>
+  <h1>{pageTitle}</h1>
+  <p>{pageDesc}</p>
+
+  {projects.map((project: any) => (
+      <article>
+        <h3>{project.data.title}</h3>
+        <p>Published: {project.data.date}</p>
+        <em>{project.data.author}</em>
+        <div>
+        </div>
+        <div>
+          <a href={`/projects/${project.data.id}`}>Read more...</a>
+        </div>
+      </article>
+      <hr />
+    )
+  )}
+</PageLayout>
+
+<style>
+  article {
+    margin: 1rem 0;
+  }
+</style>
